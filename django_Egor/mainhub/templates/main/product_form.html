@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Форма товара{% endblock %}
+
+{% block content %}
+<h2>{% if product %}Редактирование{% else %}Создать товар{% endif %}</h2>
+{% if form.non_field_errors %}
+<ul class="errorlist nonfield">
+    {% for err in form.non_field_errors %}
+    <li>{{ err }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить</button>
+    <a href="{% url 'product_list' %}">Отмена</a>
+ </form>
+{% endblock %}

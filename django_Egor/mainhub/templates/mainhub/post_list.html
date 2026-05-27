@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Блог{% endblock %}
+
+{% block content %}
+
+<nav class="tabs">
+    <button data-tab="posts" class="tab-btn">Посты</button>
+    <button data-tab="books" class="tab-btn">Книги</button>
+</nav>
+
+<section id="posts" class="tab-panel">
+    <h1>Все посты</h1>
+    {% for post in posts %}
+        <article>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+        </article>
+    {% empty %}
+        <p>Постов пока нет.</p>
+        <p>Выполнил Егор Олейников.</p>
+    {% endfor %}
+</section>
+
+<section id="books" class="tab-panel" style="display:none;">
+    <h1>Книги</h1>
+    {% for book in books %}
+        <div class="book">
+            <h3>{{ book.title }}</h3>
+            <p>Автор: {{ book.author }}</p>
+        </div>
+    {% empty %}
+        <p>Книг пока нет.</p>
+    {% endfor %}
+</section>
+
+<script>
+    (function(){
+        const tabFromServer = "{{ tab }}";
+        function init(){
+            const buttons = document.querySelectorAll('.tab-btn');
+            const panels = document.querySelectorAll('.tab-panel');
+            function show(name){
+                panels.forEach(p=> p.style.display = (p.id===name ? '' : 'none'));
+                buttons.forEach(b=> b.classList.toggle('active', b.dataset.tab===name));
+            }
+            buttons.forEach(b=> b.addEventListener('click', ()=> show(b.dataset.tab)));
+            show(tabFromServer || 'posts');
+        }
+        document.addEventListener('DOMContentLoaded', init);
+    })();
+</script>
+
+{% endblock %}

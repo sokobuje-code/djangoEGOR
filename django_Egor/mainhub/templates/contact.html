@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
+<h2>Контактная форма</h2>
+
+{% if form.non_field_errors %}
+<ul class="errorlist nonfield">
+    {% for err in form.non_field_errors %}
+    <li>{{ err }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Отправить</button>
+</form>
+
+{% endblock %}

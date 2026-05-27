@@ -1,0 +1,12 @@
+[0;1;32m●[0m gunicorn.service - gunicorn daemon
+     Loaded: loaded (]8;;file://EgorTestUbuntu/etc/systemd/system/gunicorn.service\/etc/systemd/system/gunicorn.service]8;;\; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;32mactive (running)[0m since Wed 2026-05-27 12:22:36 UTC; 61ms ago
+ Invocation: 595ae1cff2ba49f8a6053e18b9160edf
+   Main PID: 16659 (gunicorn)
+      Tasks: 1[0;38;5;245m (limit: 2273)[0m
+     Memory: 2.8M (peak: 2.8M)
+        CPU: 24ms
+     CGroup: /system.slice/gunicorn.service
+             └─[0;38;5;245m16659 /var/www/pythondjango/venv/bin/python3 /var/www/pythondjango/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock egorcore.wsgi:application[0m
+
+May 27 12:22:36 EgorTestUbuntu systemd[1]: Started gunicorn.service - gunicorn daemon.

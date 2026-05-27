@@ -6,36 +6,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Базовый шаблон{% endblock %}</title>
+    <!-- Подключение основного файла стилей -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <style>
-      header{background:#333;color:#fff;padding:0.75rem 1rem}
-      .header-row{display:flex;justify-content:space-between;align-items:center}
-      .auth-links a{margin-left:0.5rem;color:#fff;text-decoration:none}
-    </style>
 </head>
 
 <body>
     <header>
         <div class="header-row">
-          <h1>Мой сайт</h1>
-          <div class="auth-links">
-            {% if user.is_authenticated %}
-              <span class="username">{{ user.username }}</span>
-              <a href="{% url 'logout' %}" class="btn btn-outline">Выйти</a>
-            {% else %}
-              <a href="{% url 'signup' %}" class="btn btn-outline">Регистрация</a>
-              <a href="{% url 'login' %}" class="btn btn-primary">Войти</a>
-            {% endif %}
-          </div>
+            <!-- Блок логотипа и названия сайта -->
+            <h1 style="display: flex; align-items: center; gap: 15px; color: #ffffff;">
+                <img src="{% static 'css/logo.png' %}" alt="Лого" style="height: 85px; width: auto; display: block; filter: brightness(0) invert(1);">
+                <span>Сайт Егора Олейникова</span>
+            </h1>
+
+            <!-- Блок авторизации пользователей -->
+            <div class="auth-links">
+                {% if user.is_authenticated %}
+                    <span class="username">{{ user.username }}</span>
+                    <a href="{% url 'logout' %}" class="btn btn-outline">Выйти</a>
+                {% else %}
+                    <a href="{% url 'signup' %}" class="btn btn-outline">Регистрация</a>
+                    <a href="{% url 'login' %}" class="btn btn-primary">Войти</a>
+                {% endif %}
+            </div>
         </div>
     </header>
 
+    <!-- Основной контент страницы -->
     <main>
         {% block content %}{% endblock %}
     </main>
 
+    <!-- Подвал сайта -->
     <footer>
-        © 2025 Мой сайт
+        © 2025 Сайт Егора Олейникова
     </footer>
 </body>
 
